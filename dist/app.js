@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.buildServer = void 0;
 const express_1 = __importDefault(require("express"));
+const routes_1 = __importDefault(require("./routes"));
 const buildServer = () => {
     const server = (0, express_1.default)();
     server.use(express_1.default.json());
@@ -13,6 +14,7 @@ const buildServer = () => {
             message: "Hello, World!",
         });
     });
+    server.use("/api/v1", routes_1.default);
     return server;
 };
 exports.buildServer = buildServer;
