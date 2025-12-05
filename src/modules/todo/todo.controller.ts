@@ -1,19 +1,15 @@
 import { Request, Response } from "express";
 
 interface TodoType {
+	id: number;
 	name: string;
 	description: string;
 }
 
+const data: TodoType[] = [];
+
 const getTodos = async (req: Request, res: Response) => {
 	try {
-		const data: TodoType[] = [
-			{
-				name: "Завершить уроки завтра",
-				description: "в 10:00",
-			},
-		];
-
 		res.status(200).send({
 			success: true,
 			data: data,
@@ -23,4 +19,36 @@ const getTodos = async (req: Request, res: Response) => {
 	}
 };
 
-export default { getTodos };
+const createTodo = async (req: Request, res: Response) => {
+	const { name, description } = req.body as TodoType;
+	try {
+		const newData = {
+			id: data.length + 1,
+			name,
+			description,
+		};
+		data.push(newData);
+		res.status(201).send({
+			success: true,
+			data: newData,
+		});
+	} catch (e) {
+		console.error("Error in createTodo:", e);
+	}
+};
+
+const deleteTodo = async (req: Request, res: Response) => {
+	const { id } = req.params;
+	try {
+		const todoIndex = data.findIndex((todo) => todo.id === +id!);
+		data.splice(todoIndex, 1);
+		res.status(200).send({
+			success: true,
+			data: todoIndex,
+		});
+	} catch (e) {
+		console.error("Error in deleteTodo:", e);
+	}
+};
+
+export default { getTodos, createTodo, deleteTodo };
