@@ -1,14 +1,31 @@
 import { Request, Response } from "express";
 import { prisma } from "../../plugins/prisma";
-
-interface UserType {
-	name: string;
-	description: string;
-}
+import { Prisma } from "../../generated/prisma/client";
 
 const getUsers = async (req: Request, res: Response) => {
 	try {
-		const data = await prisma.user.findMany();
+		const { name, email } = req.query;
+
+		const where: Prisma.UserWhereInput = {};
+
+		if (name) {
+			where.name = {
+				contains: String(name),
+				mode: "insensitive",
+			};
+		}
+
+		if (email) {
+			where.email = {
+				contains: String(email),
+				mode: "insensitive",
+			};
+		}
+
+		const data = await prisma.user.findMany({
+			where: where,
+		});
+
 		res.status(200).send({
 			success: true,
 			data: data,
