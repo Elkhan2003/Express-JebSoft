@@ -1,0 +1,202 @@
+[
+	{
+		"name": "Иван Иванов",
+		"email": "ivan.ivanov@example.com"
+	},
+	{
+		"name": "Мария Петрова",
+		"email": "maria.petrova@example.com"
+	},
+	{
+		"name": "Алексей Сидоров",
+		"email": "alexey.sidorov@example.com"
+	},
+	{
+		"name": "Елена Смирнова",
+		"email": "elena.smirnova@example.com"
+	},
+	{
+		"name": "Дмитрий Козлов",
+		"email": "dmitry.kozlov@example.com"
+	},
+	{
+		"name": "Анна Новикова",
+		"email": "anna.novikova@example.com"
+	},
+	{
+		"name": "Сергей Морозов",
+		"email": "sergey.morozov@example.com"
+	},
+	{
+		"name": "Ольга Волкова",
+		"email": "olga.volkova@example.com"
+	},
+	{
+		"name": "Андрей Соколов",
+		"email": "andrey.sokolov@example.com"
+	},
+	{
+		"name": "Татьяна Лебедева",
+		"email": "tatyana.lebedeva@example.com"
+	},
+	{
+		"name": "Максим Козлов",
+		"email": "maxim.kozlov@example.com"
+	},
+	{
+		"name": "Наталья Романова",
+		"email": "natalya.romanova@example.com"
+	},
+	{
+		"name": "Павел Орлов",
+		"email": "pavel.orlov@example.com"
+	},
+	{
+		"name": "Екатерина Николаева",
+		"email": "ekaterina.nikolaeva@example.com"
+	},
+	{
+		"name": "Владимир Федоров",
+		"email": "vladimir.fedorov@example.com"
+	},
+	{
+		"name": "Юлия Михайлова",
+		"email": "yulia.mikhailova@example.com"
+	},
+	{
+		"name": "Роман Васильев",
+		"email": "roman.vasilev@example.com"
+	},
+	{
+		"name": "Светлана Павлова",
+		"email": "svetlana.pavlova@example.com"
+	},
+	{
+		"name": "Игорь Семенов",
+		"email": "igor.semenov@example.com"
+	},
+	{
+		"name": "Виктория Егорова",
+		"email": "victoria.egorova@example.com"
+	},
+	{
+		"name": "Константин Захаров",
+		"email": "konstantin.zakharov@example.com"
+	},
+	{
+		"name": "Дарья Кузнецова",
+		"email": "darya.kuznetsova@example.com"
+	},
+	{
+		"name": "Артем Попов",
+		"email": "artem.popov@example.com"
+	},
+	{
+		"name": "Марина Соловьева",
+		"email": "marina.solovyeva@example.com"
+	},
+	{
+		"name": "Никита Борисов",
+		"email": "nikita.borisov@example.com"
+	},
+	{
+		"name": "Кристина Григорьева",
+		"email": "kristina.grigoryeva@example.com"
+	},
+	{
+		"name": "Денис Степанов",
+		"email": "denis.stepanov@example.com"
+	},
+	{
+		"name": "Александра Яковлева",
+		"email": "alexandra.yakovleva@example.com"
+	},
+	{
+		"name": "Евгений Данилов",
+		"email": "evgeny.danilov@example.com"
+	},
+	{
+		"name": "Ирина Фролова",
+		"email": "irina.frolova@example.com"
+	},
+	{
+		"name": "Михаил Антонов",
+		"email": "mikhail.antonov@example.com"
+	},
+	{
+		"name": "Валерия Тимофеева",
+		"email": "valeria.timofeeva@example.com"
+	},
+	{
+		"name": "Олег Белов",
+		"email": "oleg.belov@example.com"
+	},
+	{
+		"name": "Полина Комарова",
+		"email": "polina.komarova@example.com"
+	},
+	{
+		"name": "Кирилл Воробьев",
+		"email": "kirill.vorobyev@example.com"
+	},
+	{
+		"name": "Анастасия Ковалева",
+		"email": "anastasia.kovaleva@example.com"
+	},
+	{
+		"name": "Виталий Ильин",
+		"email": "vitaly.ilyin@example.com"
+	},
+	{
+		"name": "Вероника Виноградова",
+		"email": "veronika.vinogradova@example.com"
+	},
+	{
+		"name": "Глеб Голубев",
+		"email": "gleb.golubev@example.com"
+	},
+	{
+		"name": "Диана Жукова",
+		"email": "diana.zhukova@example.com"
+	},
+	{
+		"name": "Егор Макаров",
+		"email": "egor.makarov@example.com"
+	},
+	{
+		"name": "Злата Алексеева",
+		"email": "zlata.alekseeva@example.com"
+	},
+	{
+		"name": "Илья Крылов",
+		"email": "ilya.krylov@example.com"
+	},
+	{
+		"name": "Карина Баранова",
+		"email": "karina.baranova@example.com"
+	},
+	{
+		"name": "Леонид Медведев",
+		"email": "leonid.medvedev@example.com"
+	},
+	{
+		"name": "Милана Тарасова",
+		"email": "milana.tarasova@example.com"
+	},
+	{
+		"name": "Николай Белоусов",
+		"email": "nikolay.belousov@example.com"
+	},
+	{
+		"name": "Оксана Филиппова",
+		"email": "oksana.filippova@example.com"
+	},
+	{
+		"name": "Петр Маркин",
+		"email": "petr.markin@example.com"
+	},
+	{
+		"name": "Регина Герасимова",
+		"email": "regina.gerasimova@example.com"
+	}
+]
