@@ -73,6 +73,42 @@ const createUser = async (req: Request, res: Response) => {
 	}
 };
 
+const createUserBulk = async (req: Request, res: Response) => {
+	try {
+		const users: Prisma.UserCreateManyInput[] = req.body;
+
+		if (!Array.isArray(users) || users.length === 0) {
+			return res.status(400).send({
+				success: false,
+				message: "Invalid data in body",
+			});
+		}
+
+		// const data = await prisma.user.createMany({
+		// 	data: users,
+		// 	skipDuplicates: true,
+		// });
+
+		const data = await Promise.all(
+			users.map((user) =>
+				prisma.user.create({
+					data: user,
+				}),
+			),
+		);
+
+		res.status(201).send({
+			success: true,
+			results: `Success created ${data.length} user(s)`,
+		});
+	} catch (e) {
+		res.status(500).send({
+			success: false,
+			message: `Error in createUserBulk: ${e}`,
+		});
+	}
+};
+
 const updateUser = async (req: Request, res: Response) => {
 	const { id } = req.params;
 	const { name, email } = req.body;
@@ -118,4 +154,43 @@ const deleteUser = async (req: Request, res: Response) => {
 	}
 };
 
-export default { getUsers, getMe, createUser, updateUser, deleteUser };
+const deleteUserBulk = async (req: Request, res: Response) => {
+	try {
+		const ids: number[] = req.body;
+
+		if (!Array.isArray(ids) || ids.length === 0) {
+			return res.status(400).send({
+				success: false,
+				message: "Invalid data in body",
+			});
+		}
+
+		const data = await prisma.user.deleteMany({
+			where: {
+				id: {
+					in: ids,
+				},
+			},
+		});
+
+		res.status(204).send({
+			success: true,
+			result: data,
+		});
+	} catch (e) {
+		res.status(500).send({
+			success: false,
+			message: `Error deleteUser: ${e}`,
+		});
+	}
+};
+
+export default {
+	getUsers,
+	getMe,
+	createUser,
+	createUserBulk,
+	updateUser,
+	deleteUser,
+	deleteUserBulk,
+};
