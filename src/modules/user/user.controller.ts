@@ -4,7 +4,7 @@ import { Prisma } from "../../generated/prisma/client";
 
 const getUsers = async (req: Request, res: Response) => {
 	try {
-		const { name, email } = req.query;
+		const { name, email, page, size } = req.query;
 
 		const where: Prisma.UserWhereInput = {};
 
@@ -22,12 +22,29 @@ const getUsers = async (req: Request, res: Response) => {
 			};
 		}
 
-		const data = await prisma.user.findMany({
-			where: where,
-		});
+		const pageNumber = page ? Number(page) : 1;
+		const pageSize = size ? Number(size) : 10;
+		const skip = (pageNumber - 1) * pageSize;
+
+		const [data, count] = await Promise.all([
+			prisma.user.findMany({
+				where: where,
+				skip: skip,
+				take: pageSize,
+			}),
+			prisma.user.count({
+				where: where,
+			}),
+		]);
 
 		res.status(200).send({
 			success: true,
+			pagination: {
+				page: pageNumber,
+				size: pageSize,
+				totalItems: count,
+				totalPages: Math.ceil(count / pageSize),
+			},
 			data: data,
 		});
 	} catch (e) {
