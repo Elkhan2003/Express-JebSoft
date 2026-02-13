@@ -11,7 +11,7 @@ const uploadFile = async (req: Request, res: Response) => {
 		}
 
 		const fileName = req.file.originalname;
-		const filePath = `uploads/${uuid4()}-${fileName}`;
+		const filePath = `${uuid4()}-${fileName}`;
 
 		// загружаем файл в базу данных
 		const { data, error } = await supabase.storage
@@ -37,7 +37,8 @@ const uploadFile = async (req: Request, res: Response) => {
 
 		res.status(200).send({
 			name: fileName,
-			url: signedData.signedUrl,
+			filePath: filePath,
+			urlImage: signedData.signedUrl,
 		});
 	} catch (error) {
 		res.status(500).send({
@@ -56,10 +57,11 @@ const uploadMultipleFiles = async (req: Request, res: Response) => {
 
 		const uploadPromises = req.files.map(async (file) => {
 			const fileName = file.originalname;
+			const filePath = `${uuid4()}-${fileName}`;
 
 			const { data, error } = await supabase.storage
 				.from("avatar")
-				.upload(`uploads/${fileName}`, file.buffer);
+				.upload(filePath, file.buffer);
 
 			if (error) {
 				res.status(500).send({
@@ -68,9 +70,21 @@ const uploadMultipleFiles = async (req: Request, res: Response) => {
 				return;
 			}
 
+			// создаем signed URL c привязкой токена (срок годности ссылки)
+			const { data: signedData, error: signedError } = await supabase.storage
+				.from("avatar")
+				.createSignedUrl(filePath, 60 * 60); // 1 час
+
+			if (signedError) {
+				return res.status(500).send({
+					message: `Error creating signed url: ${signedError.message}`,
+				});
+			}
+
 			return {
 				name: fileName,
-				url: `${process.env.SUPABASE_URL}/storage/v1/object/public/${data.fullPath}`,
+				filePath: filePath,
+				urlImage: signedData.signedUrl,
 			};
 		});
 
@@ -84,4 +98,28 @@ const uploadMultipleFiles = async (req: Request, res: Response) => {
 	}
 };
 
-export default { uploadFile, uploadMultipleFiles };
+const getFIleSupabase = async (req: Request, res: Response) => {
+	const filePath = String(req.params.filePath);
+
+	try {
+		const { data: signedData, error: signedError } = await supabase.storage
+			.from("avatar")
+			.createSignedUrl(filePath, 60 * 60); // 1 час
+
+		if (signedError) {
+			return res.status(500).send({
+				message: `Error creating signed url: ${signedError.message}`,
+			});
+		}
+
+		res.status(200).send({
+			urlImage: signedData.signedUrl,
+		});
+	} catch (error) {
+		res.status(500).send({
+			message: `Error in getFIleSupabase: ${error}`,
+		});
+	}
+};
+
+export default { uploadFile, uploadMultipleFiles, getFIleSupabase };

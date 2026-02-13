@@ -10,5 +10,6 @@ router.post(
 	upload.array("files", 10),
 	uploadControllers.uploadMultipleFiles,
 );
+router.get("/get-file/:filePath", uploadControllers.getFIleSupabase);
 
 export default router;
