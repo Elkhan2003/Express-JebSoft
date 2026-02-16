@@ -16,7 +16,10 @@ const getMessages = async (req: Request, res: Response) => {
 			data: data,
 		});
 	} catch (e) {
-		console.error("Error in getMessages:", e);
+		res.status(500).send({
+			success: false,
+			message: `Error in getMessages: ${e}`,
+		});
 	}
 };
 
