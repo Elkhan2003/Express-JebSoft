@@ -52,3 +52,4 @@
 *.wmv
 
 /src/generated/prisma
+/jebsoft-firebase-adminsdk-fbsvc-74c337fc91.json

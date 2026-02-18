@@ -1,6 +1,7 @@
 import { Router } from "express";
 import cors from "cors";
 import uploadRoutes from "../modules/upload/upload.routes";
+import authRoutes from "../modules/auth/auth.routes";
 import imagesRoutes from "../modules/images/images.routes";
 import todoRoutes from "../modules/todo/todo.routes";
 import userRoutes from "../modules/user/user.routes";
@@ -14,6 +15,7 @@ const corsConfig = {
 const router = Router();
 
 router.use("/upload", cors(corsConfig), uploadRoutes);
+router.use("/auth", cors(corsConfig), authRoutes);
 router.use("/images", cors(corsConfig), imagesRoutes);
 router.use("/todo", cors(corsConfig), todoRoutes);
 router.use("/user", cors(corsConfig), userRoutes);
